@@ -157,7 +157,7 @@ begin
     form1.PageControl1.Pages[0].Show;
 end;
 
-//单价管理
+//价格管理
 procedure TForm1.size_sClick(Sender: TObject);
 begin
 
