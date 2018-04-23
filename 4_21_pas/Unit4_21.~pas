@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, ADODB, DB, DBClient, DBGrids, Grids, StdCtrls, Menus,
-  ExtCtrls, Provider;
+  ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -14,6 +14,8 @@ type
     N2: TMenuItem;
     DataSource1: TDataSource;
     ClientDataSet1: TClientDataSet;
+    ADOQuery1: TADOQuery;
+    ADODataSet1: TADODataSet;
     N3: TMenuItem;
     N4: TMenuItem;
     size_sale: TMenuItem;
@@ -73,9 +75,6 @@ type
     Label13: TLabel;
     Button_th_all: TButton;
     ADOConnection1: TADOConnection;
-    DataSetProvider1: TDataSetProvider;
-    DBGrid1: TDBGrid;
-    ADOQuery1: TADOQuery;
     procedure Button_th_saveClick(Sender: TObject);
     procedure Button_th_quitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -155,27 +154,8 @@ end;
 
 //进货明细
 procedure TForm1.size_saleClick(Sender: TObject);
-var temp,temp1:string;
 begin
-    temp1 := form1.ClientDataSet1.FieldByName('godown').AsString;
-    temp:='select godown a from T_Godown';
-    with clientdataset1 do
-     begin
-       close;
-       clientdataset1.CommandText:='';
-       ClientDataSet1.CommandText:=temp;
-       open;
-       combobox_jh_inputck.Items.Clear;
-       while not EOF do
-        begin
-          ComboBox_jh_inputck.Items.Add(temp1);
-          next;
-        end;
-     end;
-     clientdataset1.Append;
-     clientdataset1.FieldByName('godown').Value:='主进程';
-     
-form1.PageControl3.Pages[0].Show;
+    form1.PageControl3.Pages[0].Show;
 end;
 
 //价格管理
