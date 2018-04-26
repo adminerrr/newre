@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 271
-  Top = 129
+  Left = 498
+  Top = 193
   Width = 1303
   Height = 914
   Caption = 'Form1'
@@ -25,26 +25,41 @@ object Form1: TForm1
     WordWrap = True
   end
   object Panel1: TPanel
-    Left = 8
-    Top = 8
-    Width = 913
-    Height = 753
+    Left = 0
+    Top = 0
+    Width = 929
+    Height = 769
     Caption = ' '
     TabOrder = 0
   end
+  object DBGrid1: TDBGrid
+    Left = 944
+    Top = 112
+    Width = 249
+    Height = 120
+    DataSource = DataSource1
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -13
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+  end
   object PageControl3: TPageControl
-    Left = 24
-    Top = 25
+    Left = 0
+    Top = 1
     Width = 873
     Height = 712
-    ActivePage = TabSheet7
-    TabOrder = 1
+    ActivePage = TabSheet8
+    TabOrder = 2
     object TabSheet7: TTabSheet
       object Label25: TLabel
         Left = 56
         Top = 448
         Width = 65
         Height = 16
+        AutoSize = False
         Caption = #24212#20184#37329#39069
       end
       object Label26: TLabel
@@ -52,6 +67,7 @@ object Form1: TForm1
         Top = 448
         Width = 65
         Height = 16
+        AutoSize = False
         Caption = #23454#20184#37329#39069
       end
       object Label27: TLabel
@@ -62,9 +78,9 @@ object Form1: TForm1
         Caption = #32463#21150#20154
       end
       object Label28: TLabel
-        Left = 640
+        Left = 632
         Top = 448
-        Width = 48
+        Width = 65
         Height = 16
         Caption = #21407#22987#21333#21495
       end
@@ -73,12 +89,13 @@ object Form1: TForm1
         Top = 512
         Width = 41
         Height = 16
+        AutoSize = False
         Caption = #22791#27880
       end
       object Label_jh_re: TLabel
         Left = 104
         Top = 512
-        Width = 377
+        Width = 417
         Height = 25
         AutoSize = False
         Font.Charset = DEFAULT_CHARSET
@@ -91,7 +108,7 @@ object Form1: TForm1
       object Label_jh_money: TLabel
         Left = 128
         Top = 448
-        Width = 89
+        Width = 105
         Height = 25
         AutoSize = False
         Font.Charset = DEFAULT_CHARSET
@@ -102,9 +119,9 @@ object Form1: TForm1
         ParentFont = False
       end
       object Label_jh_activ_my: TLabel
-        Left = 320
+        Left = 312
         Top = 448
-        Width = 89
+        Width = 105
         Height = 25
         AutoSize = False
         Font.Charset = DEFAULT_CHARSET
@@ -115,7 +132,7 @@ object Form1: TForm1
         ParentFont = False
       end
       object Label_jh_renumber: TLabel
-        Left = 696
+        Left = 704
         Top = 448
         Width = 137
         Height = 25
@@ -135,41 +152,45 @@ object Form1: TForm1
         Align = alCustom
         TabOrder = 0
         object Button15: TButton
-          Left = 56
-          Top = 32
+          Left = 64
+          Top = 40
           Width = 113
           Height = 41
           Caption = #32769#21830#21697#28155#21152
           TabOrder = 0
+          OnClick = Button15Click
         end
         object Button16: TButton
           Left = 296
-          Top = 32
+          Top = 40
           Width = 121
           Height = 41
           Caption = #26032#21830#21697#28155#21152
           TabOrder = 1
+          OnClick = Button16Click
         end
         object Button17: TButton
           Left = 552
-          Top = 32
+          Top = 40
           Width = 105
           Height = 41
           Caption = #23548#20837'/'#23548#20986
           TabOrder = 2
+          OnClick = Button17Click
         end
       end
       object GroupBox6: TGroupBox
         Left = 56
-        Top = 16
+        Top = 24
         Width = 785
-        Height = 145
+        Height = 129
         TabOrder = 1
         object Label34: TLabel
           Left = 32
           Top = 56
-          Width = 73
+          Width = 65
           Height = 16
+          AutoSize = False
           Caption = #25910#36135#20179#24211
           WordWrap = True
         end
@@ -178,6 +199,7 @@ object Form1: TForm1
           Top = 56
           Width = 49
           Height = 16
+          AutoSize = False
           Caption = #20379#36135#21830
         end
         object Label36: TLabel
@@ -185,10 +207,11 @@ object Form1: TForm1
           Top = 56
           Width = 73
           Height = 16
+          AutoSize = False
           Caption = #25910#36135#26085#26399
         end
-        object Edit4: TEdit
-          Left = 336
+        object Edit_jh_commit: TEdit
+          Left = 352
           Top = 56
           Width = 121
           Height = 24
@@ -232,56 +255,28 @@ object Form1: TForm1
         OnClick = Button_th_quitClick
       end
       object ComboBox_jh_workp: TComboBox
-        Left = 496
+        Left = 488
         Top = 448
-        Width = 89
+        Width = 105
         Height = 24
         ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
         ItemHeight = 16
         TabOrder = 4
         Text = 'ComboBox1'
       end
-      object ListView3: TListView
+      object DBGrid2: TDBGrid
         Left = 56
-        Top = 192
+        Top = 176
         Width = 785
-        Height = 105
-        Columns = <
-          item
-            AutoSize = True
-            Caption = #21830#21697#32534#21495
-          end
-          item
-            AutoSize = True
-            Caption = #21830#21697#21517#31216
-          end
-          item
-            AutoSize = True
-            Caption = #21333#20301
-          end
-          item
-            AutoSize = True
-            Caption = #35268#26684#22411#21495
-          end
-          item
-            AutoSize = True
-            Caption = #39068#33394
-          end
-          item
-            AutoSize = True
-            Caption = #21333#20215
-          end
-          item
-            AutoSize = True
-            Caption = #25968#37327
-          end
-          item
-            AutoSize = True
-            Caption = #24635#37329#39069
-          end>
-        GridLines = True
+        Height = 120
+        DataSource = DataSource1
+        ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
         TabOrder = 5
-        ViewStyle = vsReport
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -13
+        TitleFont.Name = 'MS Sans Serif'
+        TitleFont.Style = []
       end
     end
     object TabSheet8: TTabSheet
@@ -289,22 +284,25 @@ object Form1: TForm1
       object Label1: TLabel
         Left = 40
         Top = 448
-        Width = 48
+        Width = 65
         Height = 16
+        AutoSize = False
         Caption = #24212#20184#37329#39069
       end
       object Label2: TLabel
         Left = 240
         Top = 448
-        Width = 48
+        Width = 65
         Height = 16
+        AutoSize = False
         Caption = #23454#20184#37329#39069
       end
       object Label3: TLabel
         Left = 448
         Top = 448
-        Width = 36
+        Width = 57
         Height = 16
+        AutoSize = False
         Caption = #32463#21150#20154
       end
       object Label5: TLabel
@@ -312,6 +310,7 @@ object Form1: TForm1
         Top = 512
         Width = 41
         Height = 16
+        AutoSize = False
         Caption = #22791#27880
       end
       object Label_th_re: TLabel
@@ -330,7 +329,7 @@ object Form1: TForm1
       object Label_th_money: TLabel
         Left = 112
         Top = 448
-        Width = 89
+        Width = 105
         Height = 25
         AutoSize = False
         Font.Charset = DEFAULT_CHARSET
@@ -343,7 +342,7 @@ object Form1: TForm1
       object Label_th_activepay: TLabel
         Left = 312
         Top = 448
-        Width = 89
+        Width = 105
         Height = 25
         AutoSize = False
         Font.Charset = DEFAULT_CHARSET
@@ -384,28 +383,31 @@ object Form1: TForm1
         Height = 137
         TabOrder = 1
         object Label11: TLabel
-          Left = 280
+          Left = 296
           Top = 56
-          Width = 36
+          Width = 49
           Height = 16
+          AutoSize = False
           Caption = #20379#36135#21830
         end
         object Label12: TLabel
           Left = 512
           Top = 56
-          Width = 48
+          Width = 65
           Height = 16
+          AutoSize = False
           Caption = #20986#36135#26085#26399
         end
         object Label13: TLabel
           Left = 48
           Top = 56
-          Width = 48
+          Width = 65
           Height = 16
+          AutoSize = False
           Caption = #20986#36135#20179#24211
         end
         object Edit1_th_sorce: TEdit
-          Left = 344
+          Left = 352
           Top = 56
           Width = 121
           Height = 24
@@ -421,7 +423,7 @@ object Form1: TForm1
           TabOrder = 1
         end
         object ComboBox_th_inputck: TComboBox
-          Left = 128
+          Left = 120
           Top = 56
           Width = 145
           Height = 24
@@ -458,70 +460,28 @@ object Form1: TForm1
         TabOrder = 4
         Text = 'ComboBox1'
       end
-      object ListView1_th: TListView
+      object DBGrid3: TDBGrid
         Left = 40
         Top = 200
-        Width = 785
-        Height = 105
-        Columns = <
-          item
-            AutoSize = True
-            Caption = #21830#21697#32534#21495
-          end
-          item
-            AutoSize = True
-            Caption = #21830#21697#21517#31216
-          end
-          item
-            AutoSize = True
-            Caption = #21333#20301
-          end
-          item
-            AutoSize = True
-            Caption = #35268#26684#22411#21495
-          end
-          item
-            AutoSize = True
-            Caption = #39068#33394
-          end
-          item
-            AutoSize = True
-            Caption = #21333#20215
-          end
-          item
-            AutoSize = True
-            Caption = #25968#37327
-          end
-          item
-            AutoSize = True
-            Caption = #24635#37329#39069
-          end>
-        GridLines = True
+        Width = 777
+        Height = 120
+        DataSource = DataSource1
+        ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
         TabOrder = 5
-        ViewStyle = vsReport
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -13
+        TitleFont.Name = 'MS Sans Serif'
+        TitleFont.Style = []
       end
     end
     object TabSheet9: TTabSheet
       ImageIndex = 2
     end
   end
-  object DBGrid1: TDBGrid
-    Left = 944
-    Top = 176
-    Width = 281
-    Height = 120
-    DataSource = DataSource1
-    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
-    TabOrder = 2
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -13
-    TitleFont.Name = 'MS Sans Serif'
-    TitleFont.Style = []
-  end
   object MainMenu1: TMainMenu
-    Left = 1016
-    Top = 16
+    Left = 944
+    Top = 8
     object N1: TMenuItem
       Caption = #37319#36141#31649#29702
       object size_sale: TMenuItem
@@ -553,44 +513,42 @@ object Form1: TForm1
       end
     end
   end
-  object DataSource1: TDataSource
-    DataSet = ClientDataSet1
-    Left = 1088
-    Top = 120
-  end
   object ClientDataSet1: TClientDataSet
     Aggregates = <>
-    AggregatesActive = True
+    CommandText = 'select * from T_Godown'
     Params = <>
     ProviderName = 'DataSetProvider1'
-    Left = 1040
-    Top = 120
+    Left = 1136
+    Top = 8
+  end
+  object DataSetProvider1: TDataSetProvider
+    DataSet = ADOQuery1
+    Options = [poAllowCommandText]
+    Left = 1096
+    Top = 8
   end
   object ADOConnection1: TADOConnection
     Connected = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
-      'fo=False;User ID=.;Initial Catalog=store_copy;Data Source=MEI;Us' +
-      'e Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;W' +
-      'orkstation ID=MEI;Use Encryption for Data=False;Tag with column ' +
-      'collation when possible=False'
+      'fo=False;Initial Catalog=store_copy;Data Source=.'
+    LoginPrompt = False
     Provider = 'SQLOLEDB.1'
-    Left = 944
-    Top = 72
-  end
-  object DataSetProvider1: TDataSetProvider
-    DataSet = ADOQuery1
-    Left = 992
-    Top = 120
+    Left = 1016
+    Top = 8
   end
   object ADOQuery1: TADOQuery
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from T_Com_information')
-    Left = 944
-    Top = 120
+      'select * from T_Godown')
+    Left = 1056
+    Top = 8
+  end
+  object DataSource1: TDataSource
+    DataSet = ClientDataSet1
+    Left = 1176
+    Top = 8
   end
 end
