@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, ADODB, DB, DBClient, DBGrids, Grids, StdCtrls, Menus,
-  ExtCtrls, MidasLib, Provider;
+  ExtCtrls, MidasLib, Provider, unit2;
 
 type
   TForm1 = class(TForm)
@@ -46,7 +46,7 @@ type
     Label34: TLabel;
     Label35: TLabel;
     Label36: TLabel;
-    Edit4: TEdit;
+    Edit_jh_commit: TEdit;
     Edit_jh_date: TEdit;
     ComboBox_jh_inputck: TComboBox;
     Button_save: TButton;
@@ -84,7 +84,11 @@ type
     procedure size_saleClick(Sender: TObject);
     procedure size_sClick(Sender: TObject);
     procedure back_saleClick(Sender: TObject);
+    procedure Button16Click(Sender: TObject);
+    procedure Button15Click(Sender: TObject);
+    procedure Button17Click(Sender: TObject);
   private
+
     { Private declarations }
   public
     { Public declarations }
@@ -118,17 +122,11 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 var temp:string;
 begin
-   form1.ComboBox_jh_inputck.Items.Add('主仓库');
-   form1.ComboBox_jh_inputck.Items.Add('副仓库');
-   form1.ComboBox_jh_inputck.Items.Add('理料仓库');
-   form1.ComboBox_jh_workp.Items.Add('王先生');
-   form1.ComboBox_jh_workp.Items.Add('李女士');
-   form1.ComboBox_jh_workp.Items.Add('汪主任');
+   //form2
    form1.Edit_jh_date.AutoSize:=true;
    temp := formatdatetime('yy年mm月dd日',now);
    form1.Edit_jh_date.Text:=temp;
    form1.ComboBox_jh_inputck.Items.clear;
-   showmessage('the one show');
  end;
 
 
@@ -157,23 +155,60 @@ end;
 
 //进货明细
 procedure TForm1.size_saleClick(Sender: TObject);
-var temp,temp1:string;
+var temp_ck,temp_com,temp_wk,temp1:string;
+    it,itemp,ity,count:integer;
 begin
-    temp:='select Godown a from T_Godown';
-     with ClientDataSet1 do
-      begin
+     temp_ck := 'select Godown a from T_Godown';
+     temp_com := 'select supplier_name sn from T_sup_infor';
+     temp_wk := 'select supplier_pe pe from T_sup_infor';
+    with ClientDataSet1 do
+     begin
        close;
-       commandtext:='';
-       commandtext:=temp;
+        commandtext:=' ';
+        commandtext:=temp_com;
        open;
-       combobox_jh_inputck.Items.Clear;
+        count := 0;
+       while not EOF do
+        begin
+          if (count = 1) then break;
+          Edit_jh_commit.Text := fieldbyname('sn').AsString;
+          count := count + 1;
+          next;
+        end;
+       close;
+        commandtext := ' ';
+        commandtext := temp_ck;
+       open;
+        combobox_jh_inputck.Items.Clear;
        while not EOF do
         begin
           combobox_jh_inputck.Items.Add(FieldByname('a').AsString);
           next;
         end;
+
+       close;
+        commandtext:=' ';
+        commandtext:=temp_wk;
+       open;
+       while not EOF do
+        begin
+          combobox_jh_workp.Items.Add(FieldByname('pe').AsString);
+          next;
+        end;
      end;
-    form1.PageControl3.Pages[0].Show;
+
+   it := combobox_jh_inputck.Items.Count;
+   if (it <> 0) then
+     begin
+       combobox_jh_inputck.Text:=combobox_jh_inputck.items.Strings[0];
+     end;
+   it := combobox_jh_workp.Items.Count;
+   if (it <> 0) then
+   begin
+       combobox_jh_workp.Text:=combobox_jh_workp.items.Strings[0];
+   end;
+
+   form1.PageControl3.Pages[0].Show;
 end;
 
 //价格管理
@@ -185,7 +220,46 @@ end;
 //退货明细
 procedure TForm1.back_saleClick(Sender: TObject);
 begin
+    showmessage('the back_commnite');
     form1.PageControl3.Pages[1].Show;
+end;
+
+//新商品添加
+procedure TForm1.Button16Click(Sender: TObject);
+begin
+    form2.Show;
+    form2.ComboBox_2_unitprice.Items.Add('the one');
+    form2.ComboBox_2_price.Items.Add('the two');
+    form2.ComboBox_2_comiteno.Items.Add('the going show');
+end;
+
+procedure TForm2.Button_2_saveClick(Sender: TObject);
+begin
+    if (messagedlg('are you sure to save ',mtinformation,[mbok,mbcancel],0))= mrok then
+    begin
+       showmessage('the');
+    end;
+
+end;
+
+
+
+//老商品添加
+procedure TForm1.Button15Click(Sender: TObject);
+begin
+
+end;
+
+//导入导出
+procedure TForm1.Button17Click(Sender: TObject);
+begin
+
+end;
+
+//销售明细
+procedure TForm1.N4Click(Sender: TObject);
+begin
+
 end;
 
 end.

@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 498
-  Top = 193
+  Left = 320
+  Top = 356
   Width = 1303
   Height = 914
   Caption = 'Form1'
@@ -73,20 +73,20 @@ object Form1: TForm1
       object Label27: TLabel
         Left = 432
         Top = 448
-        Width = 49
+        Width = 36
         Height = 16
         Caption = #32463#21150#20154
       end
       object Label28: TLabel
         Left = 632
         Top = 448
-        Width = 65
+        Width = 48
         Height = 16
         Caption = #21407#22987#21333#21495
       end
       object Label29: TLabel
         Left = 56
-        Top = 512
+        Top = 504
         Width = 41
         Height = 16
         AutoSize = False
@@ -277,6 +277,15 @@ object Form1: TForm1
         TitleFont.Height = -13
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
+      end
+      object Edit_test: TEdit
+        Left = 56
+        Top = 568
+        Width = 137
+        Height = 25
+        ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+        TabOrder = 6
+        Text = 'Edit_test'
       end
     end
     object TabSheet8: TTabSheet
@@ -507,6 +516,7 @@ object Form1: TForm1
       Caption = #38144#21806#31649#29702
       object N4: TMenuItem
         Caption = #38144#21806#26126#32454
+        OnClick = N4Click
       end
       object N7: TMenuItem
         Caption = #25442#36135#38144#21806

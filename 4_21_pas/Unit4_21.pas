@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, ADODB, DB, DBClient, DBGrids, Grids, StdCtrls, Menus,
-  ExtCtrls, MidasLib, Provider, unit2;
+  ExtCtrls, MidasLib, Provider;
 
 type
   TForm1 = class(TForm)
@@ -76,6 +76,7 @@ type
     TabSheet9: TTabSheet;
     DBGrid2: TDBGrid;
     DBGrid3: TDBGrid;
+    Edit_test: TEdit;
     procedure Button_th_saveClick(Sender: TObject);
     procedure Button_th_quitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -87,6 +88,7 @@ type
     procedure Button16Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure Button17Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
   private
 
     { Private declarations }
@@ -98,6 +100,8 @@ var
   Form1: TForm1;
 
 implementation
+
+uses Unit3, Unit4_21_2f;
 
 {$R *.dfm}
 
@@ -121,14 +125,21 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var temp:string;
+    it:integer;
 begin
-   //form2
-   form1.Edit_jh_date.AutoSize:=true;
-   temp := formatdatetime('yy年mm月dd日',now);
-   form1.Edit_jh_date.Text:=temp;
-   form1.ComboBox_jh_inputck.Items.clear;
- end;
-
+   if form1.PageControl3.PageCount <> 3 then
+     begin
+      showmessage('the information not true');
+      close;
+     end;
+   begin
+     form1.PageControl3.Visible := false;
+   end;
+     form1.Edit_jh_date.AutoSize:=true;
+     temp := formatdatetime('yy年mm月dd日',now);
+     form1.Edit_jh_date.Text:=temp;
+     form1.ComboBox_jh_inputck.Items.clear;
+end;
 
 procedure TForm1.key_ty(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -158,11 +169,14 @@ procedure TForm1.size_saleClick(Sender: TObject);
 var temp_ck,temp_com,temp_wk,temp1:string;
     it,itemp,ity,count:integer;
 begin
+     form1.PageControl3.Visible:=true;
      temp_ck := 'select Godown a from T_Godown';
      temp_com := 'select supplier_name sn from T_sup_infor';
      temp_wk := 'select supplier_pe pe from T_sup_infor';
+
     with ClientDataSet1 do
      begin
+
        close;
         commandtext:=' ';
         commandtext:=temp_com;
@@ -175,6 +189,7 @@ begin
           count := count + 1;
           next;
         end;
+
        close;
         commandtext := ' ';
         commandtext := temp_ck;
@@ -219,9 +234,34 @@ end;
 
 //退货明细
 procedure TForm1.back_saleClick(Sender: TObject);
+var temp:string;
 begin
+    form1.PageControl3.Visible:=true;
     showmessage('the back_commnite');
     form1.PageControl3.Pages[1].Show;
+    {if ( form1.ComboBox_jh_inputck.Text = form1.ClientDataSet1.FieldValues['Godown'] or
+    form1.ComboBox_jh_workp.Text = form1.ClientDataSet1.FieldValues['supplier_name']) then
+    begin
+      temp := 'select * from T_Godown ';
+      if temp <> '' then
+      begin
+        temp := 'select supplier_name 供应商, supplier_type 供应商类别,supplier_pe 联系人 from dbo.T_sup_infor';
+        clientdataset1.CommandText := temp;
+      end;
+      with clientdataset1 do
+      begin
+        close;
+        commandText := temp;
+        open;
+        form1.ComponentCount;
+        form1.Controls[1].Enabled:=true;
+
+        edit_test.text := '当前组件索引的位置坐标是: ' + inttostr(form1.Components[form1.ComponentIndex].ComponentIndex);
+        form1.ComboBox_jh_workp.SetFocus;
+        form1.Edit_test.Text := form1.Components[0].Name;
+
+      end;
+    end;}
 end;
 
 //新商品添加
@@ -232,17 +272,6 @@ begin
     form2.ComboBox_2_price.Items.Add('the two');
     form2.ComboBox_2_comiteno.Items.Add('the going show');
 end;
-
-procedure TForm2.Button_2_saveClick(Sender: TObject);
-begin
-    if (messagedlg('are you sure to save ',mtinformation,[mbok,mbcancel],0))= mrok then
-    begin
-       showmessage('the');
-    end;
-
-end;
-
-
 
 //老商品添加
 procedure TForm1.Button15Click(Sender: TObject);
@@ -259,6 +288,14 @@ end;
 //销售明细
 procedure TForm1.N4Click(Sender: TObject);
 begin
+   showmessage('the message is to showing');
+   form3:=tform3.Create(application);
+   form3.Show;
+   form3.ADOQuery1.Connection := form1.ADOConnection1;
+
+   form3.ADOQuery1.Close;
+   form3.ADOQuery1.SQL.Add('select supplier_pe from T_sup_infor ');
+   form3.ADOQuery1.open;
 
 end;
 
