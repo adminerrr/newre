@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, ADODB, DB, DBClient, DBGrids, Grids, StdCtrls, Menus,
-  ExtCtrls, MidasLib, Provider, unit2;
+  ExtCtrls, MidasLib, Provider;
 
 type
   TForm1 = class(TForm)
@@ -21,7 +21,6 @@ type
     N7: TMenuItem;
     Panel1: TPanel;
     Label10: TLabel;
-    DBGrid1: TDBGrid;
     ClientDataSet1: TClientDataSet;
     DataSetProvider1: TDataSetProvider;
     ADOConnection1: TADOConnection;
@@ -74,8 +73,9 @@ type
     Button_th_quit: TButton;
     ComboBox_th_workp: TComboBox;
     TabSheet9: TTabSheet;
-    DBGrid2: TDBGrid;
-    DBGrid3: TDBGrid;
+    DBGrid_jh: TDBGrid;
+    DBGrid_th: TDBGrid;
+    Edit_test: TEdit;
     procedure Button_th_saveClick(Sender: TObject);
     procedure Button_th_quitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -87,8 +87,9 @@ type
     procedure Button16Click(Sender: TObject);
     procedure Button15Click(Sender: TObject);
     procedure Button17Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure buy_sizeClick(Sender: TObject);
   private
-
     { Private declarations }
   public
     { Public declarations }
@@ -98,6 +99,8 @@ var
   Form1: TForm1;
 
 implementation
+
+uses Unit4_21_2f,unit_onsale;
 
 {$R *.dfm}
 
@@ -121,26 +124,33 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var temp:string;
+    it:integer;
 begin
-   //form2
-   form1.Edit_jh_date.AutoSize:=true;
-   temp := formatdatetime('yy年mm月dd日',now);
-   form1.Edit_jh_date.Text:=temp;
-   form1.ComboBox_jh_inputck.Items.clear;
- end;
-
+   if form1.PageControl3.PageCount <> 3 then
+     begin
+      showmessage('the pagecount not true');
+      close;
+     end;
+   begin
+     form1.PageControl3.Visible := false;
+   end;
+     form1.Edit_jh_date.AutoSize:=true;
+     temp := formatdatetime('yy年mm月dd日',now);
+     form1.Edit_jh_date.Text:=temp;
+     form1.ComboBox_jh_inputck.Items.clear;
+end;
 
 procedure TForm1.key_ty(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
     if (Key = VK_F5) then
-    begin
+     begin
        showmessage('the show message');
-    end;
+     end;
     if (Key = VK_F6) then
-    begin
+     begin
        showmessage('the show message!');
-    end;
+     end;
 end;
 
 procedure tform1.key_quesion_r(sender: TObject);
@@ -158,9 +168,11 @@ procedure TForm1.size_saleClick(Sender: TObject);
 var temp_ck,temp_com,temp_wk,temp1:string;
     it,itemp,ity,count:integer;
 begin
+     form1.PageControl3.Visible:=true;
      temp_ck := 'select Godown a from T_Godown';
      temp_com := 'select supplier_name sn from T_sup_infor';
      temp_wk := 'select supplier_pe pe from T_sup_infor';
+
     with ClientDataSet1 do
      begin
        close;
@@ -175,6 +187,7 @@ begin
           count := count + 1;
           next;
         end;
+
        close;
         commandtext := ' ';
         commandtext := temp_ck;
@@ -187,9 +200,10 @@ begin
         end;
 
        close;
-        commandtext:=' ';
-        commandtext:=temp_wk;
+          commandtext:=' ';
+          commandtext:=temp_wk;
        open;
+          combobox_jh_workp.Items.Clear;
        while not EOF do
         begin
           combobox_jh_workp.Items.Add(FieldByname('pe').AsString);
@@ -211,7 +225,7 @@ begin
    form1.PageControl3.Pages[0].Show;
 end;
 
-//价格管理
+//库存价格管理
 procedure TForm1.size_sClick(Sender: TObject);
 begin
 
@@ -219,30 +233,60 @@ end;
 
 //退货明细
 procedure TForm1.back_saleClick(Sender: TObject);
+var temp:string;
 begin
-    showmessage('the back_commnite');
+    form1.PageControl3.Visible:=true;
     form1.PageControl3.Pages[1].Show;
+    with clientdataset1 do
+      begin
+        close;
+        commandtext := '';
+        commandtext := 'select Godown g from T_Godown';
+        open;
+         ComboBox_th_inputck.Items.Clear;
+        while not EOF do
+         begin
+            ComboBox_th_inputck.Items.Add(fieldbyname('g').AsString);
+            next;
+         end;
+
+         close;
+        commandtext := '';
+        commandtext := 'select supplier_pe sp from T_sup_infor ';
+         open;
+          ComboBox_th_inputck.Items.Clear;
+        while not EOF do
+         begin
+            ComboBox_th_inputck.Items.Add(fieldbyname('sp').AsString);
+            next;
+         end;
+      end;
+
+    begin
+      temp := 'select * from T_Godown ';
+      if temp <> '' then
+       begin
+        temp := 'select supplier_name 供应商, supplier_type 供应商类别,supplier_pe 联系人 from dbo.T_sup_infor';
+        clientdataset1.CommandText := temp;
+       end;
+      with clientdataset1 do
+       begin
+        close;
+        commandText := temp;
+        open;
+       end;
+    end;
 end;
 
 //新商品添加
 procedure TForm1.Button16Click(Sender: TObject);
 begin
+    form2.ADOQuery1.Connection := ADOConnection1;
+    form2.Button_2_saveClick(form2);
+    form2.Button_2_quitClick(form2);
     form2.Show;
-    form2.ComboBox_2_unitprice.Items.Add('the one');
-    form2.ComboBox_2_price.Items.Add('the two');
-    form2.ComboBox_2_comiteno.Items.Add('the going show');
+    showmessage('button_2 is click and button_2_quitclick is click');
 end;
-
-procedure TForm2.Button_2_saveClick(Sender: TObject);
-begin
-    if (messagedlg('are you sure to save ',mtinformation,[mbok,mbcancel],0))= mrok then
-    begin
-       showmessage('the');
-    end;
-
-end;
-
-
 
 //老商品添加
 procedure TForm1.Button15Click(Sender: TObject);
@@ -259,7 +303,20 @@ end;
 //销售明细
 procedure TForm1.N4Click(Sender: TObject);
 begin
+   showmessage('the message is to showing');
+   //form3:=tform3.Create(application);
+   form3.ADOQuery1.Connection := form1.ADOConnection1;
+   form3.ADOQuery1.Close;
+   form3.BitBtn1Click(form3);
+   form3.ADOQuery1.open;
+   form3.Show;
+end;
+
+//库存剩余数
+procedure TForm1.buy_sizeClick(Sender: TObject);
+begin
 
 end;
 
+//换货销售
 end.

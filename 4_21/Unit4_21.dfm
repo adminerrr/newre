@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 320
-  Top = 356
-  Width = 1303
-  Height = 914
+  Left = 724
+  Top = 196
+  Width = 1235
+  Height = 841
   Caption = 'Form1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -32,27 +32,13 @@ object Form1: TForm1
     Caption = ' '
     TabOrder = 0
   end
-  object DBGrid1: TDBGrid
-    Left = 944
-    Top = 112
-    Width = 249
-    Height = 120
-    DataSource = DataSource1
-    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
-    TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -13
-    TitleFont.Name = 'MS Sans Serif'
-    TitleFont.Style = []
-  end
   object PageControl3: TPageControl
     Left = 0
     Top = 1
     Width = 873
     Height = 712
-    ActivePage = TabSheet8
-    TabOrder = 2
+    ActivePage = TabSheet7
+    TabOrder = 1
     object TabSheet7: TTabSheet
       object Label25: TLabel
         Left = 56
@@ -73,15 +59,17 @@ object Form1: TForm1
       object Label27: TLabel
         Left = 432
         Top = 448
-        Width = 36
+        Width = 49
         Height = 16
+        AutoSize = False
         Caption = #32463#21150#20154
       end
       object Label28: TLabel
         Left = 632
         Top = 448
-        Width = 48
+        Width = 65
         Height = 16
+        AutoSize = False
         Caption = #21407#22987#21333#21495
       end
       object Label29: TLabel
@@ -94,7 +82,7 @@ object Form1: TForm1
       end
       object Label_jh_re: TLabel
         Left = 104
-        Top = 512
+        Top = 504
         Width = 417
         Height = 25
         AutoSize = False
@@ -152,7 +140,7 @@ object Form1: TForm1
         Align = alCustom
         TabOrder = 0
         object Button15: TButton
-          Left = 64
+          Left = 72
           Top = 40
           Width = 113
           Height = 41
@@ -161,7 +149,7 @@ object Form1: TForm1
           OnClick = Button15Click
         end
         object Button16: TButton
-          Left = 296
+          Left = 312
           Top = 40
           Width = 121
           Height = 41
@@ -170,7 +158,7 @@ object Form1: TForm1
           OnClick = Button16Click
         end
         object Button17: TButton
-          Left = 552
+          Left = 568
           Top = 40
           Width = 105
           Height = 41
@@ -264,9 +252,9 @@ object Form1: TForm1
         TabOrder = 4
         Text = 'ComboBox1'
       end
-      object DBGrid2: TDBGrid
+      object DBGrid_jh: TDBGrid
         Left = 56
-        Top = 176
+        Top = 184
         Width = 785
         Height = 120
         DataSource = DataSource1
@@ -282,10 +270,9 @@ object Form1: TForm1
         Left = 56
         Top = 568
         Width = 137
-        Height = 25
+        Height = 24
         ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
         TabOrder = 6
-        Text = 'Edit_test'
       end
     end
     object TabSheet8: TTabSheet
@@ -469,7 +456,7 @@ object Form1: TForm1
         TabOrder = 4
         Text = 'ComboBox1'
       end
-      object DBGrid3: TDBGrid
+      object DBGrid_th: TDBGrid
         Left = 40
         Top = 200
         Width = 777
@@ -506,6 +493,7 @@ object Form1: TForm1
       Caption = #24211#23384#31649#29702
       object buy_size: TMenuItem
         Caption = #24211#23384#21097#20313#25968
+        OnClick = buy_sizeClick
       end
       object size_s: TMenuItem
         Caption = #20215#26684#31649#29702
