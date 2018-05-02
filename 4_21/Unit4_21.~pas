@@ -88,6 +88,7 @@ type
     procedure Button15Click(Sender: TObject);
     procedure Button17Click(Sender: TObject);
     procedure N4Click(Sender: TObject);
+    procedure buy_sizeClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -224,7 +225,7 @@ begin
    form1.PageControl3.Pages[0].Show;
 end;
 
-//价格管理
+//库存价格管理
 procedure TForm1.size_sClick(Sender: TObject);
 begin
 
@@ -235,41 +236,56 @@ procedure TForm1.back_saleClick(Sender: TObject);
 var temp:string;
 begin
     form1.PageControl3.Visible:=true;
-    showmessage('the back_commnite');
     form1.PageControl3.Pages[1].Show;
+    with clientdataset1 do
+      begin
+        close;
+        commandtext := '';
+        commandtext := 'select Godown g from T_Godown';
+        open;
+         ComboBox_th_inputck.Items.Clear;
+        while not EOF do
+         begin
+            ComboBox_th_inputck.Items.Add(fieldbyname('g').AsString);
+            next;
+         end;
 
-    {if ( form1.ComboBox_jh_inputck.Text = form1.ClientDataSet1.FieldValues['Godown']  or
-    form1.ComboBox_jh_workp.Text = form1.ClientDataSet1.FieldValues['supplier_name'])  then
-    }begin
+         close;
+        commandtext := '';
+        commandtext := 'select supplier_pe sp from T_sup_infor ';
+         open;
+          ComboBox_th_inputck.Items.Clear;
+        while not EOF do
+         begin
+            ComboBox_th_inputck.Items.Add(fieldbyname('sp').AsString);
+            next;
+         end;
+      end;
+
+    begin
       temp := 'select * from T_Godown ';
       if temp <> '' then
-      begin
+       begin
         temp := 'select supplier_name 供应商, supplier_type 供应商类别,supplier_pe 联系人 from dbo.T_sup_infor';
         clientdataset1.CommandText := temp;
-      end;
+       end;
       with clientdataset1 do
-      begin
+       begin
         close;
         commandText := temp;
         open;
-        {form1.ComponentCount;
-        form1.Controls[1].Enabled:=true;
-        edit_test.text := '当前组件索引的位置坐标是: ' + inttostr(form1.Components[form1.ComponentIndex].ComponentIndex);
-        form1.ComboBox_jh_workp.SetFocus;
-        form1.Edit_test.Text := form1.Components[0].Name;}
-
-      end;
+       end;
     end;
 end;
 
 //新商品添加
 procedure TForm1.Button16Click(Sender: TObject);
 begin
+    form2.ADOQuery1.Connection := ADOConnection1;
+    form2.Button_2_saveClick(form2);
+    form2.Button_2_quitClick(form2);
     form2.Show;
-    form2.ComboBox_2_unitprice.Items.Add('the one');
-    form2.ComboBox_2_price.Items.Add('the two');
-    form2.ComboBox_2_comiteno.Items.Add('the going show');
-
+    showmessage('button_2 is click and button_2_quitclick is click');
 end;
 
 //老商品添加
@@ -290,13 +306,17 @@ begin
    showmessage('the message is to showing');
    //form3:=tform3.Create(application);
    form3.ADOQuery1.Connection := form1.ADOConnection1;
-   form3.bitntest(form1);
    form3.ADOQuery1.Close;
-   form3.ADOQuery1.SQL.Add('select supplier_pe from T_sup_infor ');
+   form3.BitBtn1Click(form3);
    form3.ADOQuery1.open;
    form3.Show;
 end;
 
-//换货销售
+//库存剩余数
+procedure TForm1.buy_sizeClick(Sender: TObject);
+begin
 
+end;
+
+//换货销售
 end.
