@@ -1,6 +1,6 @@
 object Form_old_com: TForm_old_com
-  Left = 181
-  Top = 192
+  Left = 396
+  Top = 256
   Width = 962
   Height = 743
   Caption = 'Form_old_com'
@@ -18,7 +18,7 @@ object Form_old_com: TForm_old_com
   object DBGrid1: TDBGrid
     Left = 32
     Top = 80
-    Width = 505
+    Width = 657
     Height = 185
     DataSource = DataSource1
     ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
@@ -32,8 +32,8 @@ object Form_old_com: TForm_old_com
     OnDblClick = DBGrid1DblClick
   end
   object Button_oldco_save: TButton
-    Left = 536
-    Top = 568
+    Left = 504
+    Top = 360
     Width = 121
     Height = 33
     Caption = #20445#23384'(F5)'
@@ -47,8 +47,8 @@ object Form_old_com: TForm_old_com
     OnClick = Button_oldco_saveClick
   end
   object Button_oldco_quit: TButton
-    Left = 744
-    Top = 568
+    Left = 688
+    Top = 360
     Width = 113
     Height = 33
     Caption = #36864#20986'(ESC)'

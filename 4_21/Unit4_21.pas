@@ -100,7 +100,7 @@ var
 
 implementation
 
-uses Unit4_21_2f,unit_onsale,unit4;
+uses Unit4_21_2f,unit_onsale,unit4,unit5;
 
 {$R *.dfm}
 
@@ -291,6 +291,8 @@ procedure TForm1.Button15Click(Sender: TObject);
 begin
   form_old_com.ADOQuery1.Connection := ADOConnection1;
   form_old_com.show;
+
+  
 end;
 
 //导入导出
@@ -313,8 +315,26 @@ end;
 
 //库存剩余数
 procedure TForm1.buy_sizeClick(Sender: TObject);
+var i_t:integer;
 begin
+    form_com_size.ADOQuery1.Connection := ADOConnection1;
+    form_com_size.Show;
+    form_com_size.ComboBox_oldcom_add.Text := '';
 
+    with form_com_size.ADOQuery1 do
+      begin
+        sql.Clear;
+        close;
+        SQL.add('select Com_amount c from dbo.T_Com_information');
+        open;
+        while not eof do
+          begin
+             form_com_size.ComboBox_oldcom_add.Items.Add(fieldbyname('c').Text);
+             next;
+          end;
+        form_com_size.ComboBox_oldcom_add.Text := form_com_size.ComboBox_oldcom_add.Items.Text;
+      end;
+    showmessage('the kucun size is to show');
 end;
 
 //换货销售

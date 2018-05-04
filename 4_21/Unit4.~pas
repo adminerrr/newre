@@ -59,12 +59,12 @@ begin
      begin
       if (DBGrid1.Fields[DBGrid1.FieldCount].Value <> '') then
        begin
-         for fc:=0 to DBGrid1.FieldCount-1 do
-           begin
-              str_temp := DBGrid1.Fields[fc].CurValue;
-              showmessage(str_temp);
-              sleep(1000);
-           end;
+           for fc:=0 to DBGrid1.FieldCount-1 do
+             begin
+               str_temp := DBGrid1.Fields[fc].CurValue;
+               showmessage(str_temp);
+               sleep(1000);
+             end;
        end;
      end;
      showmessage('the fieldcount is zero');
@@ -86,7 +86,6 @@ begin
                end;
              showmessage('the programe is sleep 2 secends');
              sleep(2000);
-             next;
            end;
        end;
     end
@@ -135,7 +134,7 @@ begin
               Parameters.ParamByName('cmo').Value := cmoney;
               Parameters.ParamByName('cnu').Value := cprice;
               open;}
-              showmessage('the sql successful');
+              showmessage('the sql succfule');
             end;
         end;
 end;

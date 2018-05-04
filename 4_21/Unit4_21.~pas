@@ -100,7 +100,7 @@ var
 
 implementation
 
-uses Unit4_21_2f,unit_onsale;
+uses Unit4_21_2f,unit_onsale,unit4;
 
 {$R *.dfm}
 
@@ -143,11 +143,11 @@ end;
 procedure TForm1.key_ty(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-    if (Key = VK_F5) then
+    if (Key = $74) then
      begin
        showmessage('the show message');
      end;
-    if (Key = VK_F6) then
+    if (Key = $75) then
      begin
        showmessage('the show message!');
      end;
@@ -239,9 +239,10 @@ begin
     form1.PageControl3.Pages[1].Show;
     with clientdataset1 do
       begin
+
         close;
-        commandtext := '';
-        commandtext := 'select Godown g from T_Godown';
+         commandtext := '';
+         commandtext := 'select Godown g from T_Godown';
         open;
          ComboBox_th_inputck.Items.Clear;
         while not EOF do
@@ -282,16 +283,14 @@ end;
 procedure TForm1.Button16Click(Sender: TObject);
 begin
     form2.ADOQuery1.Connection := ADOConnection1;
-    form2.Button_2_saveClick(form2);
-    form2.Button_2_quitClick(form2);
     form2.Show;
-    showmessage('button_2 is click and button_2_quitclick is click');
 end;
 
 //老商品添加
 procedure TForm1.Button15Click(Sender: TObject);
 begin
-
+  form_old_com.ADOQuery1.Connection := ADOConnection1;
+  form_old_com.show;
 end;
 
 //导入导出
